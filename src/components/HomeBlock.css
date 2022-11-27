@@ -1,0 +1,114 @@
+.homeBlock {
+  background: url("https://image.tmdb.org/t/p/original/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg")
+    no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 900px;
+}
+
+.homeBlock__container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  backdrop-filter: brightness(55%);
+  padding: 0 80px;
+  color: white;
+}
+
+.homeBlock__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeBlock__content > h4 {
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 900;
+  margin-bottom: 40px;
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  color: rgb(190, 190, 190)
+}
+
+.homeBlock__content > h4::before{
+  content: "";
+  display: inline-block;
+  height: 24px;
+  width: 4px;
+  margin-right: 8px;
+  background-color: #2560e9;
+}
+
+.homeBlock__content > h1 {
+  font-size: 72px;
+  margin-bottom: 0px;
+}
+
+.homeBlock__content > p{
+  font-size: 18px;
+    width: 700px;  
+    line-height: 24px;
+    margin-bottom: 64px;
+}
+
+.homeBlock__content > a{
+    width: min-content;
+}
+
+.homeBlock__details{
+    margin-bottom: 24px;
+}
+
+.homeBlock__details,
+.homeBlock__detail {
+  display: flex;
+}
+
+.homeBlock__detail {
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 15px;
+}
+
+.homeBlock__detail > .MuiSvgIcon-root {
+  margin-right: 4px;
+  font-size: 16px;
+}
+
+.homeBlock__year {
+  margin-right: 16px;
+}
+
+.homeBlock__language {
+  padding: 2px 8px;
+  margin-right: 16px;
+  border: 1px white solid;
+}
+
+.homeBlock__genre {
+  font-weight: 500;
+}
+
+.homeBlock__button{
+    width: 172px;
+    height: 60px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+   color: white;
+   border: 2px #fff solid;
+    background-color: transparent;
+    text-transform: uppercase;
+    transition: 200ms ease;
+}
+
+.homeBlock__button:hover{
+  background-color: white;
+  color: black
+}

@@ -1,0 +1,59 @@
+.home{
+    background: #161616;
+    z-index: -99999;
+    color: white;
+}
+
+
+.home__movies--row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home__movies--top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+margin-bottom: 64px;
+}
+
+.home__movies--top > h1{
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+}
+
+.home__movies--top > h1::before{
+content: '';
+display: inline-block;
+width: 6px;
+height: 44px;
+margin-right: 12px;
+background-color: #2560e9;
+}
+
+.home__movies--button{
+    width: 200px;
+    height: 48px;
+    font-size: 20px;
+    background-color: transparent;
+    color: white;
+    border: 2px white solid;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 5px;
+    transition: 200ms ease;
+}
+
+.home__movies--button:hover{
+background-color: #fff;
+color: #000;
+}
+
+.home__movies--list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
