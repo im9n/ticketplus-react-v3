@@ -35,31 +35,39 @@ const Home = () => {
             <Movie />
             <Movie />
             <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />   
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
           </>
         }
 
         text="Popular Movies"
       />
-      <div className="home__movies">
-        <div className="container home__movies--container">
-          <div className="row home__movies--row">
-            <div className="home__movies--top">
-              <h1>Popular TV Shows</h1>
-              <Link>
-                <button className="home__movies--button pointer">
-                  View all
-                </button>
-              </Link>
-            </div>
-            <div className="home__movies--list">
-              <Movie />
-              <Movie />
-              <Movie />
-              <Movie />
-            </div>
-          </div>
-        </div>
-      </div>
+      <MoviesList
+        listItems={
+          <>
+           <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+            <Movie />
+          </>
+        }
+
+        text="Popular TV Shows"
+      />
     </div>
   );
 };

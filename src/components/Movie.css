@@ -1,14 +1,14 @@
 .movie {
-  width: 300px;
-  height: 450px;
+  flex-basis: 22%;
   position: relative;
   margin: 0 16px;
+  margin-bottom: 48px;
   overflow: hidden;
   border-radius: 4px;
-  padding: 32px 16px;
+  flex-basis: 22%;
 }
 
-.movie:hover .movie__img > img {
+.movie:hover > img {
   filter: brightness(55%);
 }
 
@@ -18,22 +18,23 @@
 }
 
 .movie__img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
+  width: 100%;
+  height: auto;
 }
 
-.movie__img > img {
+.movie > img {
   width: 100%;
-  object-fit: cover;
+  height: 100%;
   transition: 200ms ease;
 }
 
 .movie__content {
-position: relative;
+  position: absolute;
+  top: 16px;
+  left: 53%;
+  transform: translate(-50%);
+  width: 100%;
+  transform: translate(-50%);
   opacity: 0;
   visibility: hidden;
   transition: 400ms ease;
@@ -45,56 +46,73 @@ position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 64px;
+  margin-bottom: 24px;
 }
 
-.movie__top > h4{
-    font-size: 40px;
-    margin-bottom: 2px;
+.movie__top > h4 {
+  font-size: 36px;
+  margin-bottom: 4px;
 }
 
-.movie__genres{
-display: flex;
-flex-wrap: wrap;
+.movie__genres {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.movie__genres > p{
-    font-weight: 400;
+.movie__genres > p {
+  font-weight: 400;
+  font-size: 12px;
+  padding: 6px 12px;
+  background-color: rgba(68, 68, 68, 0.637);
+  border-radius: 40px;
+  margin-bottom: 4px;
+}
+
+.movie__genres > p:not(:first-child) {
+  margin-left: 2px;
+}
+
+.movie__details {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie__detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie__detail > p {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.movie__detail > .MuiSvgIcon-root {
+  font-size: 18px;
+}
+
+.movie__language > p {
+  text-transform: uppercase;
+}
+
+.movie__detail:not(:last-child) {
+  margin-bottom: 48px;
+}
+
+@media (max-width: 1280px) {
+  .movie {
+    flex-basis: 28%;
+  }
+
+  .movie__genres > p {
     font-size: 12px;
-    padding: 6px 12px;
-    background-color: rgba(68, 68, 68, 0.637);
-    border-radius: 40px;
-    margin-bottom: 4px;
-}
+  }
 
-.movie__genres > p:not(:first-child){
-    margin-left: 4px;
-}
+  .movie__genres > p:not(:first-child) {
+    margin-left: 2px;
+  }
 
-.movie__details{
-    display: flex;
-    flex-direction: column;
+  .movie__top > h4 {
+    margin-bottom: 12px;
+  }
 }
-
-.movie__detail{
-    display: flex;
-    justify-content: space-between;
-}
-
-.movie__detail > p{
-    font-weight: 300;
-    font-size: 14px;
-}
-
-.movie__detail > .MuiSvgIcon-root{
-    font-size: 18px;
-}
-
-.movie__language > p{
-    text-transform: uppercase;
-}
-
-.movie__detail:not(:last-child){
-    margin-bottom: 48px;
-}
-
