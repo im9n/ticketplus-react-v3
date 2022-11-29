@@ -13,8 +13,11 @@ nav {
 .nav__left,
 .nav__right{
   display: flex;
-  width: 50%;
   align-items: center;
+}
+
+.nav__left{
+    flex: 1;
 }
 
 .nav__right{
@@ -82,4 +85,7 @@ color: rgb(223, 223, 223);
     color: white;
 }
 
+@media (max-width: 1024px){
+    
+}
 

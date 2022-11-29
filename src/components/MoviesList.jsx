@@ -16,6 +16,9 @@ const MoviesList = ({listItems, text}) => {
             <div className="moviesList__list">
              {listItems}
             </div>
+            <Link className='moviesList__link'>
+                <button className="moviesList__button moviesList__button2 pointer">View all</button>
+              </Link>
           </div>
         </div>
       </div>

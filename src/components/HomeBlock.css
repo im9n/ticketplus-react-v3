@@ -51,7 +51,7 @@
 
 .homeBlock__content > p{
   font-size: 18px;
-    width: 700px;  
+    max-width: 700px;  
     line-height: 24px;
     margin-bottom: 64px;
 }
@@ -111,4 +111,73 @@
 .homeBlock__button:hover{
   background-color: white;
   color: black
+}
+
+@media (max-width: 1024px){
+  .homeBlock__container{
+    padding: 0 40px;
+  }
+
+  .homeBlock__content > h1{
+    font-size: 68px;
+  }
+
+  .homeBlock__detail{
+font-size: 14px;
+  }
+
+  .homeBlock__detail > .MuiSvgIcon-root{
+    font-size: 15px; 
+  }
+
+  .homeBlock__content > p {
+    max-width: 600px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 540px){
+  .homeBlock__container{
+    padding: 0 8px;
+  text-align: center;
+  display: flex;
+  align-items: end;
+  }
+
+  .homeBlock__details{
+    display: none;
+  }
+
+.homeBlock__content{
+  align-items: center;
+}
+  .homeBlock__content > h1{
+    font-size: 56px;
+    margin-bottom: 12px;;
+  }
+
+  .homeBlock__content > h4{
+    justify-content: center;
+  }
+
+  .homeBlock__content > h4::before{
+    display: none;
+  }
+
+  .homeBlock__content > p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .homeBlock__detail{
+    margin-right: 12px;
+  }
+  
+  .homeBlock__genre{
+    flex: 1;
+    justify-content: start;
+  }
+
+  .homeBlock__button{margin-bottom: 24px;}
 }

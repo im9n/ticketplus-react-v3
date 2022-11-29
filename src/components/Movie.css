@@ -50,7 +50,8 @@
 }
 
 .movie__top > h4 {
-  font-size: 36px;
+  max-width: 95%;
+  font-size: 32px;
   margin-bottom: 4px;
 }
 
@@ -114,5 +115,35 @@
 
   .movie__top > h4 {
     margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie {
+    flex-basis: 42%;
+  }
+}
+
+@media (max-width: 600px) {
+  .movie {
+    flex-basis: 100%;
+  }
+
+  .movie__content {
+    top: 32px;
+  }
+
+  .movie__top > h4 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 380px) {
+  .movie__content {
+    top: 12px;
+  }
+
+  .movie__top > h4 {
+    font-size: 32px;
   }
 }
