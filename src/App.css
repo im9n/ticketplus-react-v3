@@ -2,6 +2,15 @@
     cursor: pointer;
 }
 
+.modal-open{
+    height: 100vh;
+    overflow: hidden;
+}
+
+.modal-open::-webkit-scrollbar{
+    display: none;
+}
+
 .textcolor{
     color: #2560e9
 }

@@ -110,7 +110,7 @@
 
 .homeBlock__button:hover{
   background-color: white;
-  color: black
+  color: black;
 }
 
 @media (max-width: 1024px){

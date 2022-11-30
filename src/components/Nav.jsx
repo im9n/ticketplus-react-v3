@@ -1,31 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css";
-import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Nav = () => {
+  const [modalOpen, setModalOpen] = useState(true);
+  const body = document.body
+
+  function openModal(){
+    setModalOpen(true)
+
+    body.classList.add('modal-open')
+  }
+
+  function closeModal(){
+    setModalOpen(false)
+
+   body.classList.remove('modal-open')
+  }
+
   return (
-    <nav>
-      <div className="nav__left">
-        <p className="nav__logo">
-          Ticket<span className="textcolor nav__plus">+</span>
-        </p>
-        <div className="nav__links">
+    <>
+      <nav>
+        <div className="nav__left">
+          <p className="nav__logo">
+            Ticket<span className="textcolor nav__plus">+</span>
+          </p>
+        </div>
+        <div className="nav__right">
+          <div className="nav__links">
+            <Link to="/">Home</Link>
+            <Link to="/">Movies</Link>
+            <Link to="/">TV Shows</Link>
+            <Link to="/">Favourites</Link>
+          </div>
+          <MenuIcon className="pointer"  onClick={() => openModal()}/>
+        </div>
+      </nav>
+      <div className={`modal ${modalOpen ? 'open' : 'close'}`}>
+        <CloseIcon className="pointer" onClick={() => closeModal()}/>
+        <div className="modal__links">
           <Link to="/">Home</Link>
           <Link to="/">Movies</Link>
           <Link to="/">TV Shows</Link>
           <Link to="/">Favourites</Link>
         </div>
       </div>
-      <div className="nav__right">
-        <form action="">
-          <div className="nav__input--wrapper">
-            <input type="text" placeholder="Search..."/>
-            <button className='pointer' type="submit"><SearchIcon /></button>
-          </div>
-        </form>
-      </div>
-    </nav>
+    </>
   );
 };
 
