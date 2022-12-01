@@ -5,19 +5,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Nav = () => {
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const body = document.body
 
   function openModal(){
     setModalOpen(true)
 
     body.classList.add('modal-open')
+    body.classList.remove('modal-close')
   }
 
   function closeModal(){
     setModalOpen(false)
 
    body.classList.remove('modal-open')
+   body.classList.add('modal-close')
   }
 
   return (

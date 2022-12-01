@@ -1,11 +1,10 @@
 .homeBlock {
-  background: url("https://image.tmdb.org/t/p/original/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg")
-    no-repeat top center fixed;
+  background: no-repeat top center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 900px;
+  height: 95vh;
 }
 
 .homeBlock__container {
@@ -74,6 +73,7 @@
   align-items: center;
   margin-right: 20px;
   font-size: 15px;
+  font-weight: 500;
 }
 
 .homeBlock__detail > .MuiSvgIcon-root {
@@ -82,17 +82,14 @@
 }
 
 .homeBlock__year {
-  margin-right: 16px;
+  margin-right: 20px;
 }
 
 .homeBlock__language {
   padding: 2px 8px;
   margin-right: 16px;
   border: 1px white solid;
-}
-
-.homeBlock__genre {
-  font-weight: 500;
+  text-transform: uppercase
 }
 
 .homeBlock__button{
