@@ -22,9 +22,8 @@ nav {
   flex: 1;
 }
 
-
 .nav__right > .MuiSvgIcon-root {
-display: none;
+  display: none;
 }
 
 .nav__logo {
@@ -34,6 +33,7 @@ display: none;
   margin-right: 40px;
   display: flex;
   align-items: center;
+  cursor:default;
 }
 
 .nav__plus {
@@ -46,6 +46,14 @@ display: none;
   text-decoration: none;
   color: white;
   font-weight: 200;
+  padding-bottom: 2px;
+  transition: 200ms ease;
+  border-bottom: 1px solid;
+  border-bottom-color: transparent;
+}
+
+.nav__links > a:hover {
+  border-bottom-color: white;
 }
 
 .nav__links > a:not(:last-child) {
@@ -107,7 +115,7 @@ display: none;
   visibility: hidden;
 }
 .modal::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .modal > .MuiSvgIcon-root {

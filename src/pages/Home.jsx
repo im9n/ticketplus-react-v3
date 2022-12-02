@@ -61,12 +61,11 @@ const Home = ({ availableGenres }) => {
             backDrop={movie.backdrop_path}
             likes={movie.vote_average}
             year={movie.release_date.slice(0,4)}
-            genres={movie.genre_ids}
             language={movie.original_language}
             overview={movie.overview}
-            availableGenres={availableGenres}
             id={movie.id}
             key={movie.id}
+            movie={true}
             />
           ))}
         </OwlCarousel>
@@ -78,9 +77,9 @@ const Home = ({ availableGenres }) => {
               <Movie
                 title={movie.original_title}
                 poster={movie.poster_path}
-                genres={movie.genre_ids}
                 id={movie.id}
                 key={movie.id}
+                movie={true}
               />
             ))}
           </>
@@ -95,9 +94,9 @@ const Home = ({ availableGenres }) => {
                 <Movie
                   title={movie.name || movie.original_name}
                   poster={movie.poster_path}
-                  genres={movie.genre_ids}
                   id={movie.id}
                   key={movie.id}
+                  movie={false}
                 />
               ))}
             </>

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./HomeBlock.css";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const HomeBlock = ({
   title,
@@ -10,17 +11,29 @@ const HomeBlock = ({
   likes,
   year,
   language,
-  genres,
   overview,
-  availableGenres,
+  id
 }) => {
-  const movieGenres = []
+  const [loading, setLoading] = useState(true);
+  const [movieGenres, setMovieGenres] = useState([]);
 
-  {for (let i = 0; index < genres.length; i++) {
-                           
-  }}
+  useEffect(() => {
+    getGenres();
+  }, []);
 
-  console.log(movieGenres)
+  async function getGenres() {
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
+    );
+
+    const data = res.data.genres
+
+    setMovieGenres(data);
+
+    console.log(movieGenres)
+
+    setLoading(false);
+  }
 
   return (
     <div
@@ -28,6 +41,7 @@ const HomeBlock = ({
       style={{
         backgroundImage: `url("https://image.tmdb.org/t/p/original${backDrop}")`,
       }}
+      key={id}
     >
       <div className="homeBlock__container">
         <div className="homeBlock__content">
@@ -44,8 +58,9 @@ const HomeBlock = ({
             <div className="homeBlock__detail homeBlock__language">
               <p>{language}</p>
             </div>
-            <div className="homeBlock__detail homeBlock__genre">
-            </div>
+            <p className="homeBlock__detail homeBlock__genre">
+              {movieGenres.map(genre => (genre.name + "")).join(', ')}
+            </p>
           </div>
           <p>{overview}</p>
           <Link to="/">
