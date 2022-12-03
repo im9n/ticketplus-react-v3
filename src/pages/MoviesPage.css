@@ -1,5 +1,10 @@
-.moviesPage{
-   width: 100%;
-   height: 100%;
-   background-color: #161616;
+.moviesPage {
+  width: 100%;
+  height: 100%;
+  background-color: #161d1f;
+  color: white;
+}
+
+.moviesPage--top{
+  background-color: rgb(16, 21, 24);
 }

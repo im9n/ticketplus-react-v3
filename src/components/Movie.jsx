@@ -18,12 +18,10 @@ const Movie = ({ title, poster, id, movie }) => {
     const data = res.data.genres;
 
     setMovieGenres(data);
-
-    console.log(movieGenres);
   }
 
   return (
-    <figure className="movie pointer">
+    <figure className="movie pointer" key={id}>
       <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="" />
       <div className="movie__content">
         <div className="movie__top">

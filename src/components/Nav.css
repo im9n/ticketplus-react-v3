@@ -113,6 +113,7 @@ nav {
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  transition: 300ms ease;
 }
 .modal::-webkit-scrollbar {
   display: none;
@@ -149,32 +150,8 @@ nav {
 }
 
 .open {
-  animation: animate-open 400ms forwards;
+  transform: translateX(0%);
   overflow: hidden;
-}
-
-.close {
-  animation: animate-close 400ms forwards;
-}
-
-@keyframes animate-open {
-  0% {
-    transform: translateX(100%);
-  }
-
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes animate-close {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
 }
 
 @media (max-width: 768px) {

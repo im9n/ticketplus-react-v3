@@ -52,28 +52,29 @@ const Home = ({ availableGenres }) => {
   return (
     <div className="home">
       <Nav />
-      {
-        loading ? (<h4>Loading...</h4>) :
+      {loading ? (
+        <h4>Loading...</h4>
+      ) : (
         <OwlCarousel className="owl-theme" {...settings}>
-          {moviesData.slice(0,5).map(movie => (
-            <HomeBlock 
-            title={movie.original_title}
-            backDrop={movie.backdrop_path}
-            likes={movie.vote_average}
-            year={movie.release_date.slice(0,4)}
-            language={movie.original_language}
-            overview={movie.overview}
-            id={movie.id}
-            key={movie.id}
-            movie={true}
+          {moviesData?.slice(0, 5).map((movie) => (
+            <HomeBlock
+              title={movie.original_title}
+              backDrop={movie.backdrop_path}
+              likes={movie.vote_average}
+              year={movie.release_date.slice(0, 4)}
+              language={movie.original_language}
+              overview={movie.overview}
+              id={movie.id}
+              key={movie.id}
+              movie={true}
             />
           ))}
         </OwlCarousel>
-        }
+      )}
       <MoviesList
         listItems={
           <>
-            {moviesData.slice(5,17).map((movie) => (
+            {moviesData?.slice(5, 17).map((movie) => (
               <Movie
                 title={movie.original_title}
                 poster={movie.poster_path}
@@ -85,12 +86,13 @@ const Home = ({ availableGenres }) => {
           </>
         }
         text="Popular Movies"
+        home={true}
       />
       <MoviesList
         listItems={
           <>
             <>
-              {showsData.map((movie) => (
+              {showsData?.map((movie) => (
                 <Movie
                   title={movie.name || movie.original_name}
                   poster={movie.poster_path}
@@ -103,6 +105,7 @@ const Home = ({ availableGenres }) => {
           </>
         }
         text="Popular TV Shows"
+        home={true}
       />
     </div>
   );

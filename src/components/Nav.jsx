@@ -12,14 +12,12 @@ const Nav = () => {
     setModalOpen(true)
 
     body.classList.add('modal-open')
-    body.classList.remove('modal-close')
   }
 
   function closeModal(){
     setModalOpen(false)
 
    body.classList.remove('modal-open')
-   body.classList.add('modal-close')
   }
 
   return (
@@ -33,7 +31,7 @@ const Nav = () => {
         <div className="nav__right">
           <div className="nav__links">
             <Link to="/">Home</Link>
-            <Link to="/">Movies</Link>
+            <Link to="/movies">Movies</Link>
             <Link to="/">TV Shows</Link>
             <Link to="/">Favourites</Link>
           </div>
@@ -44,7 +42,7 @@ const Nav = () => {
         <CloseIcon className="pointer" onClick={() => closeModal()}/>
         <div className="modal__links">
           <Link to="/">Home</Link>
-          <Link to="/">Movies</Link>
+          <Link to="/movies">Movies</Link>
           <Link to="/">TV Shows</Link>
           <Link to="/">Favourites</Link>
         </div>

@@ -1,0 +1,16 @@
+.moviesList__genre {
+  padding: 7px 14px;
+  font-size: 14px;
+  background-color: #2f2f2f;
+  border-radius: 32px;
+  transition: 100ms ease;
+  margin-bottom: 8px;
+}
+
+.moviesList__genre:hover {
+  background-color: #3d3d3d;
+}
+
+.moviesList__genre:not(last-child) {
+  margin-right: 8px;
+}

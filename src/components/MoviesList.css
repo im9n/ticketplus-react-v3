@@ -63,6 +63,37 @@
   width: 100%;
 }
 
+.moviesList__genres{
+  margin-top: 20px;
+  margin-bottom: -20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.moviesList__genres > p{
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #2f2f2f;
+  border-radius: 32px;
+  transition: 100ms ease;
+}
+
+.moviesList__genres > p:hover{
+  background-color: #3d3d3d;
+}
+
+.moviesList__genres > p:active
+{
+  background-color: #2560e9;
+  color: white
+}
+
+.moviesList__genres > p:not(:last-child){
+margin-right: 6px;
+}
+
+
+
 @media (max-width: 768px) {
   .moviesList__top {
     margin-bottom: 40px;
