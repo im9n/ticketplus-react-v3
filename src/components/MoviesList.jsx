@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MovieSkeleton from "./MovieSkeleton";
 import "./MoviesList.css";
 import MoviesListGenre from "./MoviesListGenre";
 
-const MoviesList = ({ listItems, text, home, genres }) => {
+const MoviesList = ({ listItems, text, home, genres, loading  }) => {
   return (
     <div className="moviesList">
       <div className="container moviesList__container">
@@ -20,13 +21,40 @@ const MoviesList = ({ listItems, text, home, genres }) => {
             )}
             {genres && (
               <div className="moviesList__genres">
-                {genres.map((movieGenre) => (
+                {genres?.map((movieGenre) => (
                   <MoviesListGenre genre={movieGenre.name} />
                 ))}
               </div>
             )}
           </div>
-          <div className="moviesList__list">{listItems}</div>
+          <div className="moviesList__list">
+            {!loading ? (
+              listItems
+            ) : (
+              <>
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+                <MovieSkeleton />
+              </>
+            )}
+          </div>
           {home && (
             <Link className="moviesList__link">
               <button className="moviesList__button moviesList__button2 pointer">

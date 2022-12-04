@@ -46,6 +46,7 @@
 .homeBlock__content > h1 {
   font-size: 72px;
   margin-bottom: 0px;
+  text-transform: capitalize;
 }
 
 .homeBlock__content > p{

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Movie.css";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import PublicIcon from "@mui/icons-material/Public";
+import NoImage from '../assets/NoImage.png'
 import axios from "axios";
 
 const Movie = ({ title, poster, id, movie }) => {
@@ -22,7 +20,7 @@ const Movie = ({ title, poster, id, movie }) => {
 
   return (
     <figure className="movie pointer" key={id}>
-      <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="" />
+    {poster ? <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="" /> : <img src={NoImage} />}
       <div className="movie__content">
         <div className="movie__top">
           <h4>{title}</h4>

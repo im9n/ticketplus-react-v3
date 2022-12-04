@@ -46,7 +46,9 @@ const Home = ({ availableGenres }) => {
 
   useEffect(() => {
     Promise.all([getPopularMovies(), getPopularShows()]);
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }, []);
 
   return (
@@ -87,6 +89,7 @@ const Home = ({ availableGenres }) => {
         }
         text="Popular Movies"
         home={true}
+        loading={loading}
       />
       <MoviesList
         listItems={
@@ -104,6 +107,7 @@ const Home = ({ availableGenres }) => {
             </>
           </>
         }
+        loading={loading}
         text="Popular TV Shows"
         home={true}
       />

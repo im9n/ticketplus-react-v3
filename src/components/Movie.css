@@ -28,6 +28,10 @@
   transition: 200ms ease;
 }
 
+.movie__skeleton{
+  aspect-ratio: 2 / 3;
+}
+
 .movie__content {
   position: absolute;
   top: 16px;
@@ -129,6 +133,10 @@
 @media (max-width: 600px) {
   .movie {
     flex-basis: 100%;
+  }
+
+  .movie__skeleton{
+    width: 100%;
   }
 
   .movie__content {
