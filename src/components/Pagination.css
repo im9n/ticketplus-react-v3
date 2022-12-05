@@ -1,5 +1,5 @@
 .pagination{
-    max-width: 540px;
+    max-width: 600px;
     margin: 0 auto;
     margin-top: -60px;
     padding-bottom: 80px;
@@ -24,11 +24,12 @@
     align-items: center;
    flex: 1;
    padding: 0 44px;
-   justify-content: space-between;
+   justify-content: center
 }
 
 .pagination__pages > p{
     font-weight: 300;
+    margin: 0 16px;
 }
 
 .selected{

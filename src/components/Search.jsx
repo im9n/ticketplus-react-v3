@@ -6,16 +6,34 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
 
-const Search = () => {
+const Search = ({ filter, setFilter, setSearchMade, setSearch, search }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [inputSearch, setInputSearch] = useState("");
+
+  function onSubmit(e) {
+    e.preventDefault();
+    if (inputSearch === "") {
+      return;
+    }
+
+    setSearch(inputSearch);
+    setFilter('featured')
+    setSearchMade(true);
+
+  }
 
   return (
     <div className="search">
       <div className="container search__container">
         <div className="row search__row">
-          <form action="">
+          <form onSubmit={(e) => onSubmit(e)}>
             <div className="search__input--wrapper">
-              <input type="text" placeholder="Enter keywords..." />
+              <input
+                type="text"
+                placeholder="Enter keywords..."
+                value={inputSearch}
+                onChange={(e) => setInputSearch(e.target.value)}
+              />
               <button type="submit" className="pointer">
                 <SearchIcon />
               </button>
@@ -26,28 +44,52 @@ const Search = () => {
               className="search__filter pointer"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              <p>Featured</p>
+              <p>{filter}</p>
               <KeyboardArrowDownIcon
                 className={dropdownOpen && "rotate-search-open"}
               />
             </div>
             <div
-                className="search__dropdown"
-                style={{ visibility: !dropdownOpen && "hidden" }}
+              className="search__dropdown"
+              style={{ visibility: !dropdownOpen && "hidden" }}
+            >
+              <div
+                className="search__dropdown--option pointer"
+                onClick={() => {
+                  setFilter("featured");
+                  setDropdownOpen(false);
+                }}
               >
-                <div className="search__dropdown--option pointer">
-                  <p>Featured</p>
-                </div>
-                <div className="search__dropdown--option pointer">
-                  <p>Newest</p>
-                </div>
-                <div className="search__dropdown--option pointer">
-                  <p>Oldest</p>
-                </div>
-                <div className="search__dropdown--option pointer">
-                  <p>Rating</p>
-                </div>
+                <p>Featured</p>
               </div>
+              <div
+                className="search__dropdown--option pointer"
+                onClick={() => {
+                  setFilter("newest");
+                  setDropdownOpen(false);
+                }}
+              >
+                <p>Newest</p>
+              </div>
+              <div
+                className="search__dropdown--option pointer"
+                onClick={() => {
+                  setFilter("oldest");
+                  setDropdownOpen(false);
+                }}
+              >
+                <p>Oldest</p>
+              </div>
+              <div
+                className="search__dropdown--option pointer"
+                onClick={() => {
+                  setFilter("rating");
+                  setDropdownOpen(false);
+                }}
+              >
+                <p>Rating</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

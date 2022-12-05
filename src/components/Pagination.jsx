@@ -14,11 +14,12 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
             pageNumber === 1 && "disabled"
           }`}
           onClick={
-            pageNumber > 1 &&
-            (() => {
-              setPageNumber(1);
-              window.scrollTo(0, 0);
-            })
+            pageNumber > 1
+              ? () => {
+                  setPageNumber(1);
+                  window.scrollTo(0, 0);
+                }
+              : undefined
           }
         >
           <KeyboardDoubleArrowLeftIcon />
@@ -28,15 +29,16 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
             pageNumber === 1 && "disabled"
           }`}
           onClick={
-            pageNumber > 1 &&
-            (() => {
-              setPageNumber(pageNumber - 1);
-              window.scrollTo(0, 0);
-            })
+            pageNumber > 1
+              ? () => {
+                  setPageNumber(pageNumber - 1);
+                  window.scrollTo(0, 0);
+                }
+              : undefined
           }
         />
         <div className="pagination__pages">
-          {pageNumber + 1 > 500 && (
+          {pageNumber + 1 > totalPages && pageNumber - 4 > 0 && (
             <p
               className="pagination__page pointer"
               onClick={() => {
@@ -47,7 +49,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
               {pageNumber - 4}
             </p>
           )}
-          {pageNumber + 2 > 500 && (
+          {pageNumber + 2 > totalPages && pageNumber - 3 > 0 &&  (
             <p
               className="pagination__page pointer"
               onClick={() => {
@@ -81,7 +83,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
             </p>
           )}
           <p className="pagination__page pointer selected">{pageNumber}</p>
-          {pageNumber + 1 <= 500 && (
+          {pageNumber + 1 <= totalPages && (
             <p
               className="pagination__page pointer"
               onClick={() => {
@@ -92,7 +94,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
               {pageNumber + 1}
             </p>
           )}
-          {pageNumber + 2 <= 500 && (
+          {pageNumber + 2 <= totalPages && (
             <p
               className="pagination__page pointer"
               onClick={() => {
@@ -103,7 +105,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
               {pageNumber + 2}
             </p>
           )}
-          {pageNumber - 2 <= 0 && (
+          {pageNumber - 2 <= 0 && pageNumber + 3 < totalPages && (
             <p
               className="pagination__page pointer"
               onClick={() => {
@@ -114,7 +116,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
               {pageNumber + 3}
             </p>
           )}
-          {pageNumber - 1 <= 0 && (
+          {pageNumber - 1 <= 0 && pageNumber + 4 < totalPages &&  (
             <p
               className="pagination__page pointer"
               onClick={() => {
@@ -128,24 +130,25 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
         </div>
         <ArrowForwardIcon
           className={`pagination__next pointer ${
-            pageNumber === 500 && "disabled"
+            pageNumber === totalPages && "disabled"
           }`}
           onClick={
-            pageNumber < 500 &&
-            (() => {
-              setPageNumber(pageNumber + 1);
-              window.scrollTo(0, 0);
-            })
+            pageNumber < totalPages
+              ? () => {
+                  setPageNumber(pageNumber + 1);
+                  window.scrollTo(0, 0);
+                }
+              : undefined
           }
         />
         <button
           className={`pagination__button pointer ${
-            pageNumber === 500 && "disabled"
+            pageNumber === totalPages && "disabled"
           }`}
-          onClick={() => {
+          onClick={pageNumber !== totalPages ? () => {
             setPageNumber(totalPages);
             window.scrollTo(0, 0);
-          }}
+          } : undefined}
         >
           <KeyboardDoubleArrowRightIcon />
         </button>

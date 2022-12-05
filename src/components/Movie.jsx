@@ -3,7 +3,7 @@ import "./Movie.css";
 import NoImage from '../assets/NoImage.png'
 import axios from "axios";
 
-const Movie = ({ title, poster, id, movie }) => {
+const Movie = ({ title, poster, id, movie}) => {
   const [movieGenres, setMovieGenres] = useState([]);
 
   useEffect(() => {

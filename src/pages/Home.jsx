@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Movie from "../components/Movie";
 import MoviesList from "../components/MoviesList";
 import axios from "axios";
+import '../components/Skeleton.css'
 
 const Home = ({ availableGenres }) => {
   const settings = {
@@ -55,12 +56,12 @@ const Home = ({ availableGenres }) => {
     <div className="home">
       <Nav />
       {loading ? (
-        <h4>Loading...</h4>
+          <div className="carousel__skeleton skeleton"></div>
       ) : (
         <OwlCarousel className="owl-theme" {...settings}>
           {moviesData?.slice(0, 5).map((movie) => (
             <HomeBlock
-              title={movie.original_title}
+              title={movie.title || movie.original_title}
               backDrop={movie.backdrop_path}
               likes={movie.vote_average}
               year={movie.release_date.slice(0, 4)}
@@ -78,7 +79,7 @@ const Home = ({ availableGenres }) => {
           <>
             {moviesData?.slice(5, 17).map((movie) => (
               <Movie
-                title={movie.original_title}
+                title={movie.title || movie.original_title}
                 poster={movie.poster_path}
                 id={movie.id}
                 key={movie.id}
@@ -89,7 +90,9 @@ const Home = ({ availableGenres }) => {
         }
         text="Popular Movies"
         home={true}
+        movies={true}
         loading={loading}
+        key={1}
       />
       <MoviesList
         listItems={
@@ -110,6 +113,8 @@ const Home = ({ availableGenres }) => {
         loading={loading}
         text="Popular TV Shows"
         home={true}
+        movies={false}
+        key={2}
       />
     </div>
   );

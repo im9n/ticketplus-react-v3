@@ -6,7 +6,6 @@ import MoviesList from "../components/MoviesList";
 import Nav from "../components/Nav";
 import Search from "../components/Search";
 import "./MoviesPage.css";
-import MovieSkeleton from "../components/MovieSkeleton";
 
 const MoviesPage = () => {
   const [moviesData, setMoviesData] = useState([]);
@@ -14,8 +13,12 @@ const MoviesPage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(500);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("featured");
+  const [searchMade, setSearchMade] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     Promise.all([getPopularMovies(), getMovieGenres()]).then(() => {
       setTimeout(() => {
         setLoading(false);
@@ -30,16 +33,44 @@ const MoviesPage = () => {
         setLoading(false);
       }, 500);
     });
-  }, [pageNumber]);
+  }, [pageNumber, search, filter]);
 
   async function getPopularMovies() {
     const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=${pageNumber}`
+      searchMade
+        ? `https://api.themoviedb.org/3/search/movie?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&query=${search}&page=${pageNumber}&include_adult=false`
+        : `https://api.themoviedb.org/3/movie/popular?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=${pageNumber}`
     );
 
-    const movies = res.data.results;
+    let movies;
+
+    if (filter === "featured") {
+      movies = res.data.results;
+    }
+    if (filter === "newest") {
+      movies = res.data.results.sort(
+        (a, b) =>
+          parseInt(b.release_date?.slice(0, 5)) -
+          parseInt(a.release_date?.slice(0, 5))
+      );
+    }
+    if (filter === "oldest") {
+      movies = res.data.results.sort(
+        (a, b) =>
+          parseInt(a.release_date?.slice(0, 5)) -
+          parseInt(b.release_date?.slice(0, 5))
+      );
+    }
+    if (filter === "rating") {
+      movies = res.data.results.sort((a, b) => b.vote_average - a.vote_average);
+    }
+
+    const movieTotalPages = res.data.total_pages;
 
     setMoviesData(movies);
+    if (searchMade) {
+      setTotalPages(movieTotalPages);
+    }
   }
 
   async function getMovieGenres() {
@@ -56,7 +87,14 @@ const MoviesPage = () => {
     <div className="moviesPage">
       <div className="moviesPage--top">
         <Nav />
-        <Search />
+        <Search
+          setFilter={setFilter}
+          filter={filter}
+          setSearch={setSearch}
+          searchMade={searchMade}
+          search={search}
+          setSearchMade={setSearchMade}
+        />
       </div>
       <MoviesList
         text={"Popular Movies"}
@@ -64,18 +102,29 @@ const MoviesPage = () => {
         genres={movieGenres}
         listItems={
           <>
-            {moviesData?.map((movie) => (
-              <Movie
-                title={movie.original_title}
-                poster={movie.poster_path}
-                id={movie.id}
-                key={movie.id}
-                movie={true}
-              />
-            ))}
+            {moviesData.length > 0 ? (
+              moviesData?.map((movie) => (
+                <Movie
+                  title={movie.title || movie.original_title}
+                  poster={movie.poster_path}
+                  id={movie.id}
+                  key={movie.id}
+                  movie={true}
+                />
+              ))
+            ) : (
+              <div className="moviesPage__results">
+                <h2 style={{ height: "90vh", fontWeight: "300" }}>
+                  Sorry, we couldn't find any matching results for{" "}
+                  <b>"{search}"</b>
+                </h2>
+              </div>
+            )}
           </>
         }
         loading={loading}
+        key={3}
+        searchMade={searchMade}
       />
       <Pagination
         pageNumber={pageNumber}

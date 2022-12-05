@@ -1,11 +1,17 @@
 .moviesPage {
   width: 100%;
   height: 100%;
-  min-height: 100vh;
+  min-height: 150vh;
   background-color: #161d1f;
   color: white;
 }
 
 .moviesPage--top{
   background-color: rgb(16, 21, 24);
+}
+
+.moviesPage__results{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

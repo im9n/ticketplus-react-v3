@@ -3,3 +3,8 @@
     z-index: -99999;
     color: white;
 }
+
+.carousel__skeleton{
+    height: 95vh;
+    width: 100%;
+}

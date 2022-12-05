@@ -30,8 +30,6 @@ const HomeBlock = ({
 
     setMovieGenres(data);
 
-    console.log(movieGenres)
-
     setLoading(false);
   }
 
@@ -59,7 +57,7 @@ const HomeBlock = ({
               <p>{language}</p>
             </div>
             <p className="homeBlock__detail homeBlock__genre">
-              {movieGenres.map(genre => (genre.name + "")).join(', ')}
+              {movieGenres.map(genre => (genre.name)).join(', ')}
             </p>
           </div>
           <p>{overview}</p>
