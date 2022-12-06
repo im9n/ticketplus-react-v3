@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./Movie.css";
 import NoImage from '../assets/NoImage.png'
 import axios from "axios";
+import './Skeleton.css'
 
-const Movie = ({ title, poster, id, movie}) => {
+const Movie = ({ title, poster, id, movie, year, loading}) => {
   const [movieGenres, setMovieGenres] = useState([]);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const Movie = ({ title, poster, id, movie}) => {
           </div>
         </div>
       </div>
+      { year && <p className="movie__year">{year}</p> }
     </figure>
   );
 };

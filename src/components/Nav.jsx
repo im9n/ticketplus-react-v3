@@ -32,7 +32,7 @@ const Nav = () => {
           <div className="nav__links">
             <Link to="/">Home</Link>
             <Link to="/movies">Movies</Link>
-            <Link to="/">TV Shows</Link>
+            <Link to="/tv">TV Shows</Link>
             <Link to="/">Favourites</Link>
           </div>
           <MenuIcon className="pointer"  onClick={() => openModal()}/>

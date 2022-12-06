@@ -16,14 +16,11 @@ const MoviesPage = () => {
   const [filter, setFilter] = useState("featured");
   const [searchMade, setSearchMade] = useState(false);
   const [search, setSearch] = useState("");
+  const [selectedGenres, setSelectedGenres] = useState([]);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-    Promise.all([getPopularMovies(), getMovieGenres()]).then(() => {
-      setTimeout(() => {
-        setLoading(false);
-      }, 500);
-    });
+    window.scrollTo(0, 0);
+    getMovieGenres()
   }, []);
 
   useEffect(() => {
@@ -33,12 +30,16 @@ const MoviesPage = () => {
         setLoading(false);
       }, 500);
     });
-  }, [pageNumber, search, filter]);
+  }, [pageNumber, search, filter, selectedGenres]);
 
   async function getPopularMovies() {
     const res = await axios.get(
       searchMade
         ? `https://api.themoviedb.org/3/search/movie?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&query=${search}&page=${pageNumber}&include_adult=false`
+        : selectedGenres.length > 0
+        ? `https://api.themoviedb.org/3/discover/movie?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&sort_by=popularity.desc&include_adult=false&page=${pageNumber}&with_genres=${selectedGenres.join(
+            "%2C"
+          )}`
         : `https://api.themoviedb.org/3/movie/popular?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=${pageNumber}`
     );
 
@@ -68,8 +69,8 @@ const MoviesPage = () => {
     const movieTotalPages = res.data.total_pages;
 
     setMoviesData(movies);
-    if (searchMade) {
-      setTotalPages(movieTotalPages);
+    if (searchMade || selectedGenres.length > 0) {
+      setTotalPages(movieTotalPages < 500 ? movieTotalPages : 500);
     }
   }
 
@@ -109,14 +110,14 @@ const MoviesPage = () => {
                   poster={movie.poster_path}
                   id={movie.id}
                   key={movie.id}
+                  year={movie.release_date.slice(0, 4)}
                   movie={true}
                 />
               ))
             ) : (
               <div className="moviesPage__results">
                 <h2 style={{ height: "90vh", fontWeight: "300" }}>
-                  Sorry, we couldn't find any matching results for{" "}
-                  <b>"{search}"</b>
+                  Sorry, we couldn't find any matching results for your search.
                 </h2>
               </div>
             )}
@@ -125,6 +126,8 @@ const MoviesPage = () => {
         loading={loading}
         key={3}
         searchMade={searchMade}
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
       />
       <Pagination
         pageNumber={pageNumber}

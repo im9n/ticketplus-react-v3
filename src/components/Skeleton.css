@@ -1,6 +1,7 @@
 .skeleton{
     background-color: rgb(36, 36, 36);
     position: relative;
+    overflow: hidden;
 }
 .skeleton::after {
     content: "";

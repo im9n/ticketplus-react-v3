@@ -83,6 +83,7 @@ const Home = ({ availableGenres }) => {
                 poster={movie.poster_path}
                 id={movie.id}
                 key={movie.id}
+                year={movie.release_date.slice(0, 4)}
                 movie={true}
               />
             ))}
@@ -104,6 +105,7 @@ const Home = ({ availableGenres }) => {
                   poster={movie.poster_path}
                   id={movie.id}
                   key={movie.id}
+                  year={movie.first_air_date.slice(0, 4)}
                   movie={false}
                 />
               ))}

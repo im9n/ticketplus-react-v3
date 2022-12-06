@@ -59,7 +59,6 @@
 .moviesList__list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   width: 100%;
 }
 
@@ -70,12 +69,8 @@
   flex-wrap: wrap;
 }
 
-.moviesList__genres > p{
-  padding: 8px 16px;
-  font-size: 14px;
-  background-color: #2f2f2f;
-  border-radius: 32px;
-  transition: 100ms ease;
+.moviesList__genres2{
+  display: none;
 }
 
 .moviesList__genres > p:hover{
@@ -109,5 +104,13 @@ margin-right: 6px;
 
   .moviesList__button2 {
     display: block;
+  }
+
+  .moviesList__genres1{
+    display: none;
+  }
+
+  .moviesList__genres2{
+    display: flex;
   }
 }

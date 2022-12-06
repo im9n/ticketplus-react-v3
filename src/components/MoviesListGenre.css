@@ -1,13 +1,26 @@
-.moviesList__genre {
+.moviesList__genre,
+.moviesList__seeMore,
+.moviesList__seeLess {
   padding: 7px 14px;
   font-size: 14px;
   background-color: #2f2f2f;
   border-radius: 32px;
   transition: 100ms ease;
   margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.moviesList__genre:hover {
+.moviesList__seeLess,
+.moviesList__seeMore{
+padding-top: 4px;
+padding-bottom: 4px;
+}
+
+.moviesList__genre:hover, 
+.moviesList__seeMore:hover,
+.moviesList__seeLess:hover {
   background-color: #3d3d3d;
 }
 

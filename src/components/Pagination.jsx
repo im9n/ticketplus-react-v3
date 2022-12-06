@@ -10,7 +10,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
     <div className="pagination">
       <div className="row pagination__row">
         <button
-          className={`pagination__button pointer pagination__prev ${
+          className={`pagination__button pointer ${
             pageNumber === 1 && "disabled"
           }`}
           onClick={
@@ -40,7 +40,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
         <div className="pagination__pages">
           {pageNumber + 1 > totalPages && pageNumber - 4 > 0 && (
             <p
-              className="pagination__page pointer"
+              className="pagination__page pointer pagination__page--hide"
               onClick={() => {
                 setPageNumber(pageNumber - 4);
                 window.scrollTo(0, 0);
@@ -51,7 +51,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
           )}
           {pageNumber + 2 > totalPages && pageNumber - 3 > 0 &&  (
             <p
-              className="pagination__page pointer"
+              className="pagination__page pointer pagination__page--hide"
               onClick={() => {
                 setPageNumber(pageNumber - 3);
                 window.scrollTo(0, 0);
@@ -62,7 +62,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
           )}
           {pageNumber - 2 > 0 && (
             <p
-              className="pagination__page pointer"
+              className="pagination__page pointer pagination__page--hide"
               onClick={() => {
                 setPageNumber(pageNumber - 2);
                 window.scrollTo(0, 0);
@@ -73,7 +73,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
           )}
           {pageNumber - 1 > 0 && (
             <p
-              className="pagination__page pointer"
+              className="pagination__page pointer pagination__page--hide"
               onClick={() => {
                 setPageNumber(pageNumber - 1);
                 window.scrollTo(0, 0);
@@ -85,7 +85,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
           <p className="pagination__page pointer selected">{pageNumber}</p>
           {pageNumber + 1 <= totalPages && (
             <p
-              className="pagination__page pointer"
+              className="pagination__page pointer pagination__page--hide"
               onClick={() => {
                 setPageNumber(pageNumber + 1);
                 window.scrollTo(0, 0);
@@ -96,7 +96,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
           )}
           {pageNumber + 2 <= totalPages && (
             <p
-              className="pagination__page pointer"
+              className="pagination__page pointer pagination__page--hide"
               onClick={() => {
                 setPageNumber(pageNumber + 2);
                 window.scrollTo(0, 0);
@@ -107,7 +107,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
           )}
           {pageNumber - 2 <= 0 && pageNumber + 3 < totalPages && (
             <p
-              className="pagination__page pointer"
+              className="pagination__page pointer pagination__page--hide"
               onClick={() => {
                 setPageNumber(pageNumber + 3);
                 window.scrollTo(0, 0);
@@ -118,7 +118,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
           )}
           {pageNumber - 1 <= 0 && pageNumber + 4 < totalPages &&  (
             <p
-              className="pagination__page pointer"
+              className="pagination__page pointer pagination__page--hide"
               onClick={() => {
                 setPageNumber(pageNumber + 4);
                 window.scrollTo(0, 0);
@@ -142,7 +142,7 @@ const Pagination = ({ pageNumber, setPageNumber, totalPages }) => {
           }
         />
         <button
-          className={`pagination__button pointer ${
+          className={`pagination__button pointer  ${
             pageNumber === totalPages && "disabled"
           }`}
           onClick={pageNumber !== totalPages ? () => {
