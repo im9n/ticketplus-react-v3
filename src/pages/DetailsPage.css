@@ -1,0 +1,108 @@
+.detailsPage__movie{
+    display: flex;
+}
+
+.detailsPage__movie--content{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.detailsPage__movie--img{
+    max-width: 360px;
+    aspect-ratio: 2 / 3;
+    border-radius: 4px;
+    margin-right: 48px;
+}
+
+.detailsPage__movie--img > img{
+    max-width: 100%;
+}
+
+.detailsPage__movie--text > h1{
+font-size: 56px;
+margin-bottom: 4px;
+}
+
+.detailsPage__movie--details{
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.detailsPage__movie--language,
+.detailsPage__movie--genres,
+.detailsPage__movie--year{
+    margin-right: 24px;
+}
+
+.detailsPage__movie--year,
+.detailsPage__movie--runtime{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detailsPage__movie--year > .MuiSvgIcon-root,
+.detailsPage__movie--runtime > .MuiSvgIcon-root{
+font-size: 18px;
+}
+
+.detailsPage__movie--year > p,
+.detailsPage__movie--runtime > p{
+margin-left: 4px;
+}
+
+.detailsPage__movie--language{
+    padding: 4px 10px;
+    border:1px white solid;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.detailsPage__movie--actors{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.detailsPage__movie--actors > h4,
+.detailsPage__movie--overview > h4{
+    font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.detailsPage__movie--overview{
+    margin-bottom: 24px;
+}
+
+.detailsPage__movie--bottom{
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.detailsPage__movie--rating{
+    margin-right: 24px;
+}
+
+.detailsPage__movie--button{
+font-size: 20px;
+letter-spacing: 1.5px;
+color: white;
+background-color: transparent;
+text-transform: uppercase;
+font-weight: 700;
+padding: 16px 20px;
+border: 2px white solid;
+transition: 300ms ease;
+}
+
+.detailsPage__movie--button:hover{
+color: black;
+background-color: #fff;
+
+}
+
+
+

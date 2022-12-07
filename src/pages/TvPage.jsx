@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Movie from "../components/Movie";
 import MoviesList from "../components/MoviesList";
 import Nav from "../components/Nav";
+import Pagination from "../components/Pagination";
 import Search from "../components/Search";
 import "./TvPage.css";
 
@@ -14,6 +15,8 @@ const TvPage = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("featured");
   const [selectedGenres, setSelectedGenres] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [totalPages, setTotalPages] = useState(500);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,7 +29,7 @@ const TvPage = () => {
         setLoading(false);
       }, 500);
     });
-  }, [search, filter, selectedGenres]);
+  }, [search, filter, selectedGenres, pageNumber]);
 
   async function getTvGenres() {
     const res = await axios.get(
@@ -39,14 +42,16 @@ const TvPage = () => {
   }
 
   async function getTvShows() {
+    setLoading(true);
+
     const res = await axios.get(
       searchMade
-        ? `https://api.themoviedb.org/3/search/tv?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=1&query=${search}&include_adult=false`
+        ? `https://api.themoviedb.org/3/search/tv?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=${pageNumber}&query=${search}&include_adult=false`
         : selectedGenres.length > 0
-        ? `https://api.themoviedb.org/3/discover/tv?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&sort_by=popularity.desc&page=1&with_genres=${selectedGenres.join(
+        ? `https://api.themoviedb.org/3/discover/tv?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&sort_by=popularity.desc&page=${pageNumber}&with_genres=${selectedGenres.join(
             "%2C"
           )}&include_null_first_air_dates=false`
-        : `https://api.themoviedb.org/3/tv/popular?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=1`
+        : `https://api.themoviedb.org/3/tv/popular?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=${pageNumber}`
     );
 
     let data;
@@ -73,6 +78,12 @@ const TvPage = () => {
     }
 
     setTvData(data);
+
+    const movieTotalPages = res.data.total_pages;
+
+    if (searchMade || selectedGenres.length > 0) {
+      setTotalPages(movieTotalPages < 500 ? movieTotalPages : 500);
+    }
   }
 
   return (
@@ -116,6 +127,11 @@ const TvPage = () => {
         }
         selectedGenres={selectedGenres}
         setSelectedGenres={setSelectedGenres}
+      />
+      <Pagination
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        totalPages={totalPages}
       />
     </div>
   );

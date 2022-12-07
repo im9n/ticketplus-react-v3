@@ -4,7 +4,7 @@ import NoImage from '../assets/NoImage.png'
 import axios from "axios";
 import './Skeleton.css'
 
-const Movie = ({ title, poster, id, movie, year, loading}) => {
+const Movie = ({ title, poster, id, movie, year}) => {
   const [movieGenres, setMovieGenres] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Movie = ({ title, poster, id, movie, year, loading}) => {
         <div className="movie__top">
           <h4>{title}</h4>
           <div className="movie__genres">
-            {movieGenres.map((genre) => (
+            {movieGenres?.map((genre) => (
               <p>{genre.name}</p>
             ))}
           </div>

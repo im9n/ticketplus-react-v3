@@ -31,10 +31,10 @@
   display: flex;
   text-transform: uppercase;
   align-items: center;
-  color: rgb(190, 190, 190)
+  color: rgb(190, 190, 190);
 }
 
-.homeBlock__content > h4::before{
+.homeBlock__content > h4::before {
   content: "";
   display: inline-block;
   height: 24px;
@@ -49,19 +49,19 @@
   text-transform: capitalize;
 }
 
-.homeBlock__content > p{
+.homeBlock__content > p {
   font-size: 18px;
-    max-width: 700px;  
-    line-height: 24px;
-    margin-bottom: 64px;
+  max-width: 700px;
+  line-height: 24px;
+  margin-bottom: 64px;
 }
 
-.homeBlock__content > a{
-    width: min-content;
+.homeBlock__content > a {
+  width: min-content;
 }
 
-.homeBlock__details{
-    margin-bottom: 24px;
+.homeBlock__details {
+  margin-bottom: 24px;
 }
 
 .homeBlock__details,
@@ -72,60 +72,72 @@
 .homeBlock__detail {
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.815);
+}
+
+.homeBlock__likes {
+  margin-right: 40px;
+}
+
+.homeBlock__likes--text {
+  font-size: 20px;
+  margin-right: 4px;
+  color: white;
+}
+
+.homeBlock__seperator {
+  display: flex;
+  align-items: center;
+  margin: 0 12px;
+  font-size: 20px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.815);
+  margin-top: -8px;
 }
 
 .homeBlock__detail > .MuiSvgIcon-root {
   margin-right: 4px;
-  font-size: 16px;
-}
-
-.homeBlock__year {
-  margin-right: 20px;
+  font-size: 20px;
+  color: #ffd29e;
 }
 
 .homeBlock__language {
   padding: 2px 8px;
-  margin-right: 16px;
-  border: 1px white solid;
-  text-transform: uppercase
+  border: 1px rgba(255, 255, 255, 0.815) solid;
+  text-transform: uppercase;
 }
 
-.homeBlock__button{
-    width: 172px;
-    height: 60px;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-   color: white;
-   border: 2px #fff solid;
-    background-color: transparent;
-    text-transform: uppercase;
-    transition: 200ms ease;
+.homeBlock__button {
+  width: 172px;
+  height: 60px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: white;
+  border: 2px #fff solid;
+  background-color: transparent;
+  text-transform: uppercase;
+  transition: 200ms ease;
 }
 
-.homeBlock__button:hover{
+.homeBlock__button:hover {
   background-color: white;
   color: black;
 }
 
-@media (max-width: 1024px){
-  .homeBlock__container{
+@media (max-width: 1024px) {
+  .homeBlock__container {
     padding: 0 40px;
   }
 
-  .homeBlock__content > h1{
+  .homeBlock__content > h1 {
     font-size: 68px;
   }
 
-  .homeBlock__detail{
-font-size: 14px;
-  }
-
-  .homeBlock__detail > .MuiSvgIcon-root{
-    font-size: 15px; 
+  .homeBlock__detail {
+    font-size: 14px;
   }
 
   .homeBlock__content > p {
@@ -134,31 +146,38 @@ font-size: 14px;
   }
 }
 
-@media (max-width: 540px){
-  .homeBlock__container{
+@media (max-width: 768px) {
+  .homeBlock__seperator {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 540px) {
+  .homeBlock__container {
     padding: 0 8px;
-  text-align: center;
-  display: flex;
-  align-items: end;
+    text-align: center;
+    display: flex;
+    align-items: end;
   }
 
-  .homeBlock__details{
+  .homeBlock__details {
     display: none;
   }
 
-.homeBlock__content{
-  align-items: center;
-}
-  .homeBlock__content > h1{
+  .homeBlock__content {
+    align-items: center;
+  }
+  .homeBlock__content > h1 {
     font-size: 56px;
-    margin-bottom: 12px;;
+    margin-bottom: 12px;
   }
 
-  .homeBlock__content > h4{
+  .homeBlock__content > h4 {
     justify-content: center;
   }
 
-  .homeBlock__content > h4::before{
+  .homeBlock__content > h4::before {
     display: none;
   }
 
@@ -167,15 +186,17 @@ font-size: 14px;
     line-height: 20px;
     margin-bottom: 24px;
   }
-  
-  .homeBlock__detail{
+
+  .homeBlock__detail {
     margin-right: 12px;
   }
-  
-  .homeBlock__genre{
+
+  .homeBlock__genre {
     flex: 1;
     justify-content: start;
   }
 
-  .homeBlock__button{margin-bottom: 24px;}
+  .homeBlock__button {
+    margin-bottom: 24px;
+  }
 }

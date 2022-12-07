@@ -4,6 +4,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import StarIcon from '@mui/icons-material/Star';
 
 const HomeBlock = ({
   title,
@@ -46,18 +47,22 @@ const HomeBlock = ({
           <h4>Latest Hits</h4>
           <h1>{title}</h1>
           <div className="homeBlock__details">
-            <div className="homeBlock__detail">
-              <ThumbUpIcon />
-              <p>{likes}</p>
+            <div className="homeBlock__detail homeBlock__likes">
+              <StarIcon />
+              <p className="homeBlock__likes--text">{likes}</p>
+              <p> | 10</p>
             </div>
+            
             <div className="homeBlock__detail homeBlock__year">
               <p>{year}</p>
             </div>
+            <p className="homeBlock__seperator">.</p>
             <div className="homeBlock__detail homeBlock__language">
               <p>{language}</p>
             </div>
+            <p className="homeBlock__seperator">.</p>
             <p className="homeBlock__detail homeBlock__genre">
-              {movieGenres.map(genre => (genre.name)).join(', ')}
+              {movieGenres?.map(genre => (genre.name)).join(', ')}
             </p>
           </div>
           <p>{overview}</p>
