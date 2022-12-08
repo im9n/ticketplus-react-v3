@@ -1,108 +1,240 @@
-.detailsPage__movie{
-    display: flex;
+.detailsPage__movie {
+  display: flex;
+  position: relative;
+  align-items: center;
+  background-size: cover;
+  min-width: 100%;
+  height: 85vh;
+  padding: 0 24px;
 }
 
-.detailsPage__movie--content{
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
+.detailsPage__movie::before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  background-size: cover;
+  backdrop-filter: brightness(25%);
 }
 
-.detailsPage__movie--img{
-    max-width: 360px;
-    aspect-ratio: 2 / 3;
-    border-radius: 4px;
-    margin-right: 48px;
+.detailsPage__movie--content {
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  overflow: auto;
+  position: relative;
 }
 
-.detailsPage__movie--img > img{
-    max-width: 100%;
+.detailsPage__movie--img {
+  max-width: 360px;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  margin-right: 48px;
+  overflow: hidden;
 }
 
-.detailsPage__movie--text > h1{
-font-size: 56px;
-margin-bottom: 4px;
+.detailsPage__movie--img > img {
+  max-width: 100%;
 }
 
-.detailsPage__movie--details{
-    display: flex;
-    align-items: center;
-    margin-bottom: 24px;
+.detailsPage__movie--text > h1 {
+  font-size: 56px;
+  margin-bottom: 4px;
+}
+
+.detailsPage__movie--details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
 .detailsPage__movie--language,
 .detailsPage__movie--genres,
-.detailsPage__movie--year{
-    margin-right: 24px;
+.detailsPage__movie--year {
+  margin-right: 24px;
 }
 
 .detailsPage__movie--year,
-.detailsPage__movie--runtime{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.detailsPage__movie--runtime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .detailsPage__movie--year > .MuiSvgIcon-root,
-.detailsPage__movie--runtime > .MuiSvgIcon-root{
-font-size: 18px;
+.detailsPage__movie--runtime > .MuiSvgIcon-root {
+  font-size: 18px;
 }
 
 .detailsPage__movie--year > p,
-.detailsPage__movie--runtime > p{
-margin-left: 4px;
+.detailsPage__movie--runtime > p {
+  margin-left: 4px;
 }
 
-.detailsPage__movie--language{
-    padding: 4px 10px;
-    border:1px white solid;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 1px;
+.detailsPage__movie--language {
+  padding: 4px 10px;
+  border: 1px white solid;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.detailsPage__movie--actors{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 24px;
+.detailsPage__movie--actors {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
 }
 
 .detailsPage__movie--actors > h4,
-.detailsPage__movie--overview > h4{
-    font-size: 18px;
+.detailsPage__movie--overview > h4 {
+  font-size: 18px;
+}
+
+.detailsPage__movie--actors > h4,
+.detailsPage__movie--overview > h4,
+.detailsPage__movie--rating > h4,
+.detailsPage__movie--producers > h4 {
   margin-bottom: 4px;
 }
 
-.detailsPage__movie--overview{
-    margin-bottom: 24px;
+.detailsPage__movie--overview {
+  margin-bottom: 24px;
+  line-height: 22px;
+  word-spacing: 0.4px;
+  max-width: 700px;
 }
 
-.detailsPage__movie--bottom{
+.detailsPage__movie--bottom {
+  display: flex;
+  margin-bottom: 40px;
+  font-size: 0px;
+}
+
+.detailsPage__movie--rating {
+  margin-right: 24px;
+  flex: 0.15;
+  font-size: 16px;
+}
+
+.detailsPage__movie--producers {
+  font-size: 16px;
+  flex: 0.85;
+}
+
+.detailsPage__movie--button {
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  color: white;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 16px 20px;
+  border: 2px white solid;
+  transition: 300ms ease;
+}
+
+.detailsPage__movie--button:hover {
+  color: black;
+  background-color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .detailsPage__movie {
+    height: 100%;
+    padding: 80px 32px;
     display: flex;
-    margin-bottom: 40px;
+    justify-content: center;
+  }
+
+  .detailsPage__movie--img{
+    margin: 0;
+    margin-bottom: 24px;
+  }
+
+  .detailsPage__movie--content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .detailsPage__movie--text > h1{
+    font-size: 44px;
+  }
+  .detailsPage__movie--actors > h4,
+.detailsPage__movie--overview > h4{
+    font-size: 16px;
 }
 
-.detailsPage__movie--rating{
-    margin-right: 24px;
+  .detailsPage__movie--language,
+  .detailsPage__movie--genres,
+  .detailsPage__movie--year,
+  .detailsPage__movie--runtime{
+    font-size: 14px;
+  }
+
+  .detailsPage__movie--details,
+  .detailsPage__movie--bottom {
+    justify-content: center;
+  }
+
+  .detailsPage__movie--overview {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detailsPage__movie--overview > p {
+    max-width: 100%;
+  }
+
+  .detailsPage__movie--bottom {
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .detailsPage__movie--rating,
+  .detailsPage__movie--producers {
+    flex: 0.5;
+  }
+
+  .detailsPage__movie--button{
+    width: 100%;
+  }
 }
 
-.detailsPage__movie--button{
-font-size: 20px;
-letter-spacing: 1.5px;
-color: white;
-background-color: transparent;
-text-transform: uppercase;
-font-weight: 700;
-padding: 16px 20px;
-border: 2px white solid;
-transition: 300ms ease;
+@media(max-width: 480px){
+.detailsPage__movie{
+    padding: 80px 24px;
 }
 
-.detailsPage__movie--button:hover{
-color: black;
-background-color: #fff;
+    .detailsPage__movie--language,
+    .detailsPage__movie--genres,
+    .detailsPage__movie--year{
+      margin-right: 12px;
+      margin-bottom: 4px;
+    }
 
+    .detailsPage__movie--runtime{
+        margin-bottom: 4px;
+    }
+
+    .detailsPage__movie--details{
+        margin-bottom: 16px;
+    }
+
+    .detailsPage__movie--actors{
+        margin-bottom: 16px;
+    }
+
+    .detailsPage__movie--button{
+        font-size: 18px;
+    }
 }
-
-
-

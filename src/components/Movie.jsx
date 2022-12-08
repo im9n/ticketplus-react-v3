@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "./Movie.css";
-import NoImage from '../assets/NoImage.png'
+import NoImage from "../assets/NoImage.png";
 import axios from "axios";
-import './Skeleton.css'
+import "./Skeleton.css";
+import { Link, useNavigate } from "react-router-dom";
 
-const Movie = ({ title, poster, id, movie, year}) => {
+const Movie = ({ title, poster, id, movie, year }) => {
   const [movieGenres, setMovieGenres] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getGenres();
   }, []);
 
   async function getGenres() {
-    const res = movie ?  await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`) : await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`)
+    const res = movie
+      ? await axios.get(
+          `https://api.themoviedb.org/3/movie/${id}?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
+        )
+      : await axios.get(
+          `https://api.themoviedb.org/3/tv/${id}?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
+        );
 
     const data = res.data.genres;
 
@@ -20,8 +28,16 @@ const Movie = ({ title, poster, id, movie, year}) => {
   }
 
   return (
-    <figure className="movie pointer" key={id}>
-    {poster ? <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="" /> : <img src={NoImage} />}
+    <figure
+      className="movie pointer"
+      key={id}
+      onClick={() => navigate(`/details/${id}`)}
+    >
+      {poster ? (
+        <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="" />
+      ) : (
+        <img src={NoImage} />
+      )}
       <div className="movie__content">
         <div className="movie__top">
           <h4>{title}</h4>
@@ -32,7 +48,7 @@ const Movie = ({ title, poster, id, movie, year}) => {
           </div>
         </div>
       </div>
-      { year && <p className="movie__year">{year}</p> }
+      {year && <p className="movie__year">{year}</p>}
     </figure>
   );
 };

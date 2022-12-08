@@ -17,6 +17,7 @@ const MoviesList = ({
   movies,
   setSelectedGenres,
   selectedGenres,
+  amountOfMovies
 }) => {
   const [seeMore, setSeeMore] = useState(false);
 
@@ -87,7 +88,7 @@ const MoviesList = ({
             <div className="moviesList__list">
               {!loading
                 ? listItems
-                : new Array(20)
+                : new Array(amountOfMovies)
                     .fill(0)
                     .map((_, index) => <MovieSkeleton key={index} />)}
             </div>

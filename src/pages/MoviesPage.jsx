@@ -20,12 +20,11 @@ const MoviesPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    getMovieGenres()
-  }, []);
+  }, [pageNumber]);
 
   useEffect(() => {
     setLoading(true);
-    getPopularMovies().then(() => {
+    Promise.all([getPopularMovies(), getMovieGenres()]).then(() => {
       setTimeout(() => {
         setLoading(false);
       }, 500);
@@ -36,7 +35,7 @@ const MoviesPage = () => {
     const res = await axios.get(
       searchMade
         ? `https://api.themoviedb.org/3/search/movie?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&query=${search}&page=${pageNumber}&include_adult=false`
-        : selectedGenres.length > 0
+        : selectedGenres?.length > 0
         ? `https://api.themoviedb.org/3/discover/movie?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&sort_by=popularity.desc&include_adult=false&page=${pageNumber}&with_genres=${selectedGenres.join(
             "%2C"
           )}`
@@ -110,7 +109,7 @@ const MoviesPage = () => {
                   poster={movie.poster_path}
                   id={movie.id}
                   key={movie.id}
-                  year={movie.release_date.slice(0, 4)}
+                  year={movie.release_date?.slice(0, 4)}
                   movie={true}
                 />
               ))
@@ -128,6 +127,7 @@ const MoviesPage = () => {
         searchMade={searchMade}
         selectedGenres={selectedGenres}
         setSelectedGenres={setSelectedGenres}
+        amountOfMovies={20}
       />
       <Pagination
         pageNumber={pageNumber}

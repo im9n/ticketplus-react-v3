@@ -41,10 +41,10 @@ const Nav = () => {
       <div className={`modal ${modalOpen ? 'open' : 'close'}`}>
         <CloseIcon className="pointer" onClick={() => closeModal()}/>
         <div className="modal__links">
-          <Link to="/">Home</Link>
-          <Link to="/movies">Movies</Link>
-          <Link to="/">TV Shows</Link>
-          <Link to="/">Favourites</Link>
+          <Link onClick={() => closeModal()} to="/">Home</Link>
+          <Link onClick={() => closeModal()} to="/movies">Movies</Link>
+          <Link onClick={() => closeModal()}to="/tv">TV Shows</Link>
+          <Link onClick={() => closeModal()} to="/">Favourites</Link>
         </div>
       </div>
     </>

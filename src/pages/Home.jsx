@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Movie from "../components/Movie";
 import MoviesList from "../components/MoviesList";
 import axios from "axios";
-import '../components/Skeleton.css'
+import "../components/Skeleton.css";
 
 const Home = ({ availableGenres }) => {
   const settings = {
@@ -56,7 +56,7 @@ const Home = ({ availableGenres }) => {
     <div className="home">
       <Nav />
       {loading ? (
-          <div className="carousel__skeleton skeleton"></div>
+        <div className="carousel__skeleton skeleton"></div>
       ) : (
         <OwlCarousel className="owl-theme" {...settings}>
           {moviesData?.slice(0, 5).map((movie) => (
@@ -94,6 +94,7 @@ const Home = ({ availableGenres }) => {
         movies={true}
         loading={loading}
         key={1}
+        amountOfMovies={12}
       />
       <MoviesList
         listItems={
@@ -117,6 +118,7 @@ const Home = ({ availableGenres }) => {
         home={true}
         movies={false}
         key={2}
+        amountOfMovies={12}
       />
     </div>
   );

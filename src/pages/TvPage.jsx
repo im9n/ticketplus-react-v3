@@ -127,6 +127,7 @@ const TvPage = () => {
         }
         selectedGenres={selectedGenres}
         setSelectedGenres={setSelectedGenres}
+        amountOfMovies={20}
       />
       <Pagination
         pageNumber={pageNumber}
