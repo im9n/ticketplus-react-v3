@@ -4,9 +4,11 @@ import NoImage from "../assets/NoImage.png";
 import axios from "axios";
 import "./Skeleton.css";
 import { Link, useNavigate } from "react-router-dom";
+import MovieSkeleton from "./MovieSkeleton";
 
 const Movie = ({ title, poster, id, movie, year }) => {
   const [movieGenres, setMovieGenres] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,13 +27,15 @@ const Movie = ({ title, poster, id, movie, year }) => {
     const data = res.data.genres;
 
     setMovieGenres(data);
+
+    setLoading(false);
   }
 
-  return (
+  return !loading ? (
     <figure
       className="movie pointer"
       key={id}
-      onClick={() => navigate(`/details/${id}`)}
+      onClick={movie ? () => navigate(`/movie/${id}`) : () => navigate(`/tv/${id}`)}
     >
       {poster ? (
         <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="" />
@@ -50,6 +54,8 @@ const Movie = ({ title, poster, id, movie, year }) => {
       </div>
       {year && <p className="movie__year">{year}</p>}
     </figure>
+  ) : (
+    <MovieSkeleton />
   );
 };
 

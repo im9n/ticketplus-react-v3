@@ -66,7 +66,7 @@ const HomeBlock = ({
             </p>
           </div>
           <p>{overview}</p>
-          <Link to="/">
+          <Link to={`/movie/${id}`}>
             <button className="homeBlock__button pointer">Discover</button>
           </Link>
         </div>

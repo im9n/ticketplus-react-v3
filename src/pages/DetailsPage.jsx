@@ -3,15 +3,15 @@ import "./DetailsPage.css";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Nav from "../components/Nav";
-import { Button } from "@mui/material";
 import MoviesList from "../components/MoviesList";
 import axios from "axios";
 import { useEffect } from "react";
 import Movie from "../components/Movie";
 import { useParams } from "react-router-dom";
 import NoImage from "../assets/NoImage.png";
+import "../components/Skeleton.css";
 
-const DetailsPage = () => {
+const DetailsPage = ({ movie }) => {
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieCast, setMovieCast] = useState([]);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
@@ -34,15 +34,21 @@ const DetailsPage = () => {
 
   async function getMovieDetails() {
     const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
+      movie
+        ? `https://api.themoviedb.org/3/movie/${movieId}?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
+        : `https://api.themoviedb.org/3/tv/${movieId}?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
     );
 
     setMovieDetails(res.data);
+
+    console.log(res.data);
   }
 
   async function getMovieCast() {
     const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
+      movie
+        ? `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
+        : `https://api.themoviedb.org/3/tv/${movieId}/credits?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US`
     );
 
     const cast = res.data.cast
@@ -55,7 +61,9 @@ const DetailsPage = () => {
 
   async function getRecommendedMovies() {
     const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=1`
+      movie
+        ? `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=1`
+        : `https://api.themoviedb.org/3/tv/${movieId}/recommendations?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=1`
     );
 
     let data;
@@ -64,7 +72,9 @@ const DetailsPage = () => {
     if (res.data.results.length === 0) {
       console.log("using similar instead");
       res2 = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=1`
+        movie
+          ? `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=1`
+          : `https://api.themoviedb.org/3/tv/119051/similar?api_key=04bf768048c1a3faae7a9805b4bb26a6&language=en-US&page=1`
       );
       data = res2.data.results.slice(0, 4);
       return setRecommendedMovies(data);
@@ -82,104 +92,197 @@ const DetailsPage = () => {
         <div
           className="detailsPage__movie"
           style={{
-            backgroundImage:
-              movieDetails?.backdrop_path &&
-              `url("https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}")`,
+            backgroundImage: loading
+              ? null
+              : movieDetails?.backdrop_path &&
+                `url("https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}")`,
           }}
         >
           <div className="detailsPage__movie--content">
             <figure className="detailsPage__movie--img">
-              <img
-                src={
-                  movieDetails.poster_path
-                    ? `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`
-                    : NoImage
-                }
-                alt=""
-              />
+              {loading ? (
+                <div
+                  className="skeleton"
+                  style={{
+                    width: "360px",
+                    maxWidth: "100%",
+                    aspectRatio: "2 / 3",
+                  }}
+                ></div>
+              ) : (
+                <img
+                  src={
+                    movieDetails.poster_path
+                      ? `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`
+                      : NoImage
+                  }
+                  alt=""
+                />
+              )}
             </figure>
             <div className="detailsPage__movie--text">
-              <h1>{movieDetails?.title || movieDetails.original_title}</h1>
-              <div className="detailsPage__movie--details">
-                <p className="detailsPage__movie--language">
-                  {movieDetails?.original_language}
-                </p>
-                <p className="detailsPage__movie--genres">
-                  {movieDetails?.genres?.map((genre) => genre.name).join(", ")}
-                </p>
-                <div className="detailsPage__movie--year">
-                  <CalendarMonthIcon />
-                  <p>{movieDetails?.release_date?.slice(0, 4)}</p>
-                </div>
-                <div className="detailsPage__movie--runtime">
-                  <AccessTimeIcon />
-                  <p>{movieDetails?.runtime}m</p>
-                </div>
-              </div>
-              {movieCast && (
-                <div className="detailsPage__movie--actors">
-                  <h4>Starring:</h4>
-                  <p>{movieCast}</p>
+              {loading ? (
+                <div
+                  className="skeleton"
+                  style={{ width: "700px", height: "60px", maxWidth: "90%" }}
+                ></div>
+              ) : (
+                <h1>
+                  {movie
+                    ? movieDetails?.title || movieDetails.original_title
+                    : movieDetails?.name || movieDetails?.original_name}
+                </h1>
+              )}
+              {loading ? (
+                <div
+                  className="skeleton"
+                  style={{
+                    width: "400px",
+                    height: "32px",
+                    maxWidth: "70%",
+                    marginTop: "16px",
+                  }}
+                ></div>
+              ) : (
+                <div className="detailsPage__movie--details">
+                  <p className="detailsPage__movie--language">
+                    {movieDetails?.original_language}
+                  </p>
+                  <p className="detailsPage__movie--genres">
+                    {movieDetails?.genres
+                      ?.map((genre) => genre.name)
+                      .join(", ")}
+                  </p>
+                  <div className="detailsPage__movie--year">
+                    <CalendarMonthIcon />
+                    <p>
+                      {movie
+                        ? movieDetails?.release_date?.slice(0, 4)
+                        : movieDetails?.first_air_date?.slice(0, 4)}
+                    </p>
+                  </div>
+                  <div
+                    className={`detailsPage__movie--${
+                      movie ? "runtime" : "seasons"
+                    }`}
+                  >
+                    {movie && <AccessTimeIcon />}
+                    <p>
+                      {movie
+                        ? movieDetails?.runtime + "m"
+                        : movieDetails?.number_of_seasons +
+                          " " +
+                          `Season${
+                            movieDetails?.number_of_seasons > 1 ? "s" : ""
+                          }`}
+                    </p>
+                  </div>
                 </div>
               )}
-              {movieDetails?.overview && (
-                <div className="detailsPage__movie--overview">
-                  <h4>Overview:</h4>
-                  <p>{movieDetails?.overview}</p>
-                </div>
+              {loading ? (
+                <>
+                  <div
+                    className="skeleton"
+                    style={{
+                      width: "600px",
+                      height: "32px",
+                      maxWidth: "90%",
+                      marginTop: "32px",
+                    }}
+                  ></div>
+                  <div
+                    className="skeleton"
+                    style={{
+                      width: "600px",
+                      height: "32px",
+                      maxWidth: "90%",
+                      marginTop: "12px",
+                    }}
+                  ></div>
+                  <div
+                    className="skeleton"
+                    style={{
+                      width: "400px",
+                      height: "32px",
+                      maxWidth: "90%",
+                      marginTop: "12px",
+                    }}
+                  ></div>
+                </>
+              ) : (
+                <>
+                  {movieCast && (
+                    <div className="detailsPage__movie--actors">
+                      <h4>Starring:</h4>
+                      <p>{movieCast}</p>
+                    </div>
+                  )}{" "}
+                  {movieDetails?.overview && (
+                    <div className="detailsPage__movie--overview">
+                      <h4>Overview:</h4>
+                      <p>{movieDetails?.overview}</p>
+                    </div>
+                  )}
+                </>
               )}
               {(movieDetails?.vote_average ||
                 movieDetails?.production_companies?.length > 0) && (
                 <div className="detailsPage__movie--bottom">
-                  {movieDetails?.vote_average && (
-                    <div className="detailsPage__movie--rating">
-                      <h4>User Rating:</h4>
-                      <p>
-                        {
-                          // Rounding to 1 decimal place
-                          Math.round(movieDetails?.vote_average * 10) / 10
-                        }{" "}
-                        / 10
-                      </p>
-                    </div>
-                  )}
-                  {movieDetails?.production_companies?.length >= 1 && (
-                    <div className="detailsPage__movie--producers">
-                      <h4>Producers:</h4>
-                      <p>
-                        {movieDetails?.production_companies
-                          ?.map((producer) => producer.name)
-                          .join(", ")}
-                      </p>
-                    </div>
+                  {loading ? (
+                    <div className="skeleton" style={{width: '700px', height: '32px', maxWidth: '90%', marginTop: '24px'}}></div>
+                  ) : (
+                    <>
+                      {movieDetails?.vote_average && (
+                        <div className="detailsPage__movie--rating">
+                          <h4>User Rating:</h4>
+                          <p>
+                            {
+                              // Rounding to 1 decimal place
+                              Math.round(movieDetails?.vote_average * 10) / 10
+                            }{" "}
+                            / 10
+                          </p>
+                        </div>
+                      )}
+                      {movieDetails?.production_companies?.length >= 1 && (
+                        <div className="detailsPage__movie--producers">
+                          <h4>Producers:</h4>
+                          <p>
+                            {movieDetails?.production_companies
+                              ?.map((producer) => producer.name)
+                              .join(", ")}
+                          </p>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
               )}
-              <button className="detailsPage__movie--button pointer">
-                Add to favourites
-              </button>
+              { loading ? <div className="skeleton" style={{width: '90%', height: '80px'}}></div> : <button className="detailsPage__movie--button pointer" onClick={() => alert('This feature is not yet implemented!')}>
+               watch now
+              </button> }
             </div>
           </div>
         </div>
 
         <MoviesList
-          text={"Recommended Movies"}
-          listItems={recommendedMovies.map((movie) => (
+          text={`Recommended ${movie ? "Movies" : "Shows"}`}
+          listItems={recommendedMovies.map((recommendedMovie) => (
             <Movie
               title={
-                movie.name ||
-                movie.original_name ||
-                movie.title ||
-                movie.original_title
+                recommendedMovie.name ||
+                recommendedMovie.original_name ||
+                recommendedMovie.title ||
+                recommendedMovie.original_title
               }
-              poster={movie.poster_path}
-              id={movie.id}
-              key={movie.id}
+              poster={recommendedMovie.poster_path}
+              id={recommendedMovie.id}
+              key={recommendedMovie.id}
               year={
-                movie.first_air_date?.slice(0, 4) ||
-                movie.release_date?.slice(0, 4)
+                recommendedMovie.first_air_date?.slice(0, 4) ||
+                recommendedMovie.release_date?.slice(0, 4)
               }
-              movie={true}
+              movie={movie}
             />
           ))}
           loading={loading}

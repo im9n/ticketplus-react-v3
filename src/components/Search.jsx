@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
 
-const Search = ({ filter, setFilter, setSearchMade, setSearch, search }) => {
+const Search = ({ filter, setFilter, setSearchMade, setSearch, setPageNumber }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [inputSearch, setInputSearch] = useState("");
 
@@ -19,7 +19,7 @@ const Search = ({ filter, setFilter, setSearchMade, setSearch, search }) => {
     setSearch(inputSearch);
     setFilter('featured')
     setSearchMade(true);
-
+    setPageNumber(1)
   }
 
   return (

@@ -68,6 +68,9 @@ const MoviesPage = () => {
     const movieTotalPages = res.data.total_pages;
 
     setMoviesData(movies);
+    if(selectedGenres.length > 0){
+      setPageNumber(1)
+    }
     if (searchMade || selectedGenres.length > 0) {
       setTotalPages(movieTotalPages < 500 ? movieTotalPages : 500);
     }
@@ -94,6 +97,7 @@ const MoviesPage = () => {
           searchMade={searchMade}
           search={search}
           setSearchMade={setSearchMade}
+          setPageNumber={setPageNumber}
         />
       </div>
       <MoviesList

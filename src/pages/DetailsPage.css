@@ -2,6 +2,7 @@
   display: flex;
   position: relative;
   align-items: center;
+  background: top center;
   background-size: cover;
   min-width: 100%;
   height: 85vh;
@@ -16,7 +17,6 @@
   right: -2px;
   bottom: -2px;
   left: -2px;
-  background-size: cover;
   backdrop-filter: brightness(25%);
 }
 
@@ -26,12 +26,13 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  overflow: auto;
+  overflow: hidden;
   position: relative;
 }
 
 .detailsPage__movie--img {
-  max-width: 360px;
+  max-width: 100%;
+  width: 360px;
   aspect-ratio: 2 / 3;
   border-radius: 4px;
   margin-right: 48px;
@@ -84,6 +85,10 @@
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+.detailsPage__movie--seasons {
+  font-weight: 400;
 }
 
 .detailsPage__movie--actors {
@@ -153,7 +158,7 @@
     justify-content: center;
   }
 
-  .detailsPage__movie--img{
+  .detailsPage__movie--img {
     margin: 0;
     margin-bottom: 24px;
   }
@@ -164,18 +169,25 @@
     text-align: center;
   }
 
-  .detailsPage__movie--text > h1{
+  .detailsPage__movie--text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detailsPage__movie--text > h1 {
     font-size: 44px;
   }
   .detailsPage__movie--actors > h4,
-.detailsPage__movie--overview > h4{
+  .detailsPage__movie--overview > h4 {
     font-size: 16px;
-}
+  }
 
   .detailsPage__movie--language,
   .detailsPage__movie--genres,
   .detailsPage__movie--year,
-  .detailsPage__movie--runtime{
+  .detailsPage__movie--runtime,
+  .detailsPage__movie--seasons {
     font-size: 14px;
   }
 
@@ -205,36 +217,77 @@
     flex: 0.5;
   }
 
-  .detailsPage__movie--button{
+  .detailsPage__movie--button {
     width: 100%;
   }
 }
 
-@media(max-width: 480px){
-.detailsPage__movie{
+@media (max-width: 480px) {
+  .detailsPage__movie {
     padding: 80px 24px;
-}
+  }
 
-    .detailsPage__movie--language,
-    .detailsPage__movie--genres,
-    .detailsPage__movie--year{
-      margin-right: 12px;
-      margin-bottom: 4px;
-    }
+  .detailsPage__movie--content {
+    text-align: left;
+  }
 
-    .detailsPage__movie--runtime{
-        margin-bottom: 4px;
-    }
+  .detailsPage__movie--text{
+    align-items: start;
+  }
 
-    .detailsPage__movie--details{
-        margin-bottom: 16px;
-    }
+  .detailsPage__movie--details,
+  .detailsPage__movie--bottom {
+    justify-content: start;
+  }
 
-    .detailsPage__movie--actors{
-        margin-bottom: 16px;
-    }
+  .detailsPage__movie--language,
+  .detailsPage__movie--genres,
+  .detailsPage__movie--year {
+    margin-right: 12px;
+    margin-bottom: 4px;
+    font-size: 12px;
+    text-align: left;
+  }
 
-    .detailsPage__movie--button{
-        font-size: 18px;
-    }
+  .detailsPage__movie--runtime,
+  .detailsPage__movie--seasons {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .detailsPage__movie--details {
+    margin-bottom: 16px;
+  }
+
+  .detailsPage__movie--actors {
+    margin-bottom: 16px;
+  }
+
+  .detailsPage__movie--button {
+    font-size: 18px;
+  }
+
+  .detailsPage__movie--actors > p,
+  .detailsPage__movie--overview > p,
+  .detailsPage__movie--rating > p,
+  .detailsPage__movie--producers > p {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .detailsPage__movie--actors > h4,
+  .detailsPage__movie--overview > h4,
+  .detailsPage__movie--rating > h4,
+  .detailsPage__movie--producers > h4 {
+    width: 100%;
+    text-align: left;
+  }
+  
+  .detailsPage__movie--rating{
+    flex: 0.3
+  }
+
+  .detailsPage__movie--producers{
+    flex: 0.7
+  }
 }

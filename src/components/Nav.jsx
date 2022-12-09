@@ -33,7 +33,6 @@ const Nav = () => {
             <Link to="/">Home</Link>
             <Link to="/movies">Movies</Link>
             <Link to="/tv">TV Shows</Link>
-            <Link to="/">Favourites</Link>
           </div>
           <MenuIcon className="pointer"  onClick={() => openModal()}/>
         </div>
@@ -44,7 +43,6 @@ const Nav = () => {
           <Link onClick={() => closeModal()} to="/">Home</Link>
           <Link onClick={() => closeModal()} to="/movies">Movies</Link>
           <Link onClick={() => closeModal()}to="/tv">TV Shows</Link>
-          <Link onClick={() => closeModal()} to="/">Favourites</Link>
         </div>
       </div>
     </>
