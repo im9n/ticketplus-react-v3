@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Nav = () => {
+  const navigate = useNavigate()
   const [modalOpen, setModalOpen] = useState(false);
   const body = document.body
 
@@ -24,7 +25,7 @@ const Nav = () => {
     <>
       <nav>
         <div className="nav__left">
-          <p className="nav__logo">
+          <p className="nav__logo pointer" onClick={() => navigate('/')}>
             Ticket<span className="textcolor nav__plus">+</span>
           </p>
         </div>

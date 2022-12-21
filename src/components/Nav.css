@@ -33,7 +33,6 @@ nav {
   margin-right: 40px;
   display: flex;
   align-items: center;
-  cursor:default;
 }
 
 .nav__plus {
